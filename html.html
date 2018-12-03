@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var num=[];
+    function makeRandomArray(arr)
+    {
+        for (let i = 0; i < 100; i++) {
+            arr[i] = Math.floor(Math.random() * 101);
+        }
+    }
+    function softArray(arr)
+    {
+        for (let j=0 ; j< 100; j++)
+        {
+            for (let i = 0; i < 99; i++)
+            {
+                if (num[i + 1] < num[i])
+                {
+                    let temp = num[i];
+                    num[i] = num[i + 1];
+                    num[i + 1] = temp;
+                }
+            }
+        }
+    }
+    function displayArr(arr)
+    {
+        for (let i = 0; i < (arr.length / 10); i++) {
+            for (let j = 0; j < 10; j++) {
+                if (i * 10 + j < 100) {
+                    document.write(arr[j + i * 10] + "  ");
+                }
+                else break;
+            }
+            document.write("<br/>");
+        }
+    }
+    function linearSearch(arr,data){
+        for (let i = 0; i < arr.length; ++i) {
+            if (arr[i] === data) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    function binarySearch(arr,data)
+    {
+        let max = Math.floor(arr.length);
+        let min = 0;
+        let mid = Math.floor((max-min)/2);
+        for (let i=1 ; i< 7; i++)
+        {
+            if(data === arr[mid]) return mid;
+            else if (data > arr[mid])
+            {
+                min = mid;
+                max = max;
+                mid = Math.floor((max-min)/2)
+            }
+            else
+            {
+                max = mid;
+                min = min;
+                mid = Math.floor((max-min)/2);
+                console.log(mid);
+            }
+        }
+        return -1;
+
+    }
+    makeRandomArray(num);
+    softArray(num);
+    displayArr(num);
+    var data= parseFloat(prompt("insert a number"));
+    document.write(linearSearch(num,data) + '<br/>');
+    document.write(binarySearch(num,data));
+
+
+</script>
+</body>
+</html>
